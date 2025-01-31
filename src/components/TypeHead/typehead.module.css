@@ -1,0 +1,35 @@
+.container{
+    width: 700px;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper{
+    padding: 30px;
+}
+
+input{
+    padding: 10px;
+    border-radius: 2px;
+    outline: none;
+    border-color: lightgray;
+}
+
+.suggestions{
+    max-height: 150px;
+    box-shadow: rgba(0px, 0px, 0px, 0.7);
+    padding: 10px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    color: black;
+}
+.suggestion{
+    padding: 10px;
+}
+.suggestion:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}
