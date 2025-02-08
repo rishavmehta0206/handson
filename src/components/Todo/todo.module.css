@@ -1,0 +1,135 @@
+/* Container styling - full width and height with centered content */
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Wrapper for the todo app content */
+.wrapper {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Input container with flexbox for input and button alignment */
+.inputContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+/* Input field styling */
+.inputContainer input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.inputContainer input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.inputContainer input::placeholder {
+    color: #999;
+}
+
+/* Add button styling */
+.formBtn {
+    padding: 12px 24px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.inputContainer button:hover {
+    background-color: #357abd;
+}
+
+/* Todo items container */
+.todoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual todo item styling */
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+
+.todo p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Button container within todo item */
+.btns {
+    display: flex;
+    gap: 8px;
+}
+
+/* Edit button styling */
+.edit {
+    padding: 8px 16px;
+    background-color: #ffd700;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit:hover {
+    background-color: #ffcd00;
+}
+
+/* Delete button styling */
+.delete {
+    padding: 8px 16px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #ff3333;
+}
+
+/* Button hover effects */
+.edit:hover,
+.delete:hover {
+    transform: scale(1.05);
+}
+
+/* Active button states */
+.edit:active,
+.delete:active {
+    transform: scale(0.95);
+}

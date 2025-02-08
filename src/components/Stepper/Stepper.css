@@ -33,23 +33,18 @@
     transition: all 0.3s ease;
   }
   
-  .step-circle.current {
+  .step-circle.active {
     border-color: #3b82f6;
     background-color: #3b82f6;
     color: white;
   }
   
-  .step-circle.completed {
-    border-color: #3b82f6;
-    background-color: #3b82f6;
-    color: white;
-  }
-  
+ 
   .step-line {
     flex: 1;
     height: 2px;
     background-color: #e2e8f0;
-    margin: 0 8px;
+    /* margin: 0 8px; */
     transition: background-color 0.3s ease;
   }
   

@@ -27,20 +27,20 @@ const Stepper = () => {
       </div>
 
       <div className="button-container">
-        <button
+        <span
           onClick={prevStep}
           disabled={currentStep === 0}
           className="stepper-button"
         >
           Previous
-        </button>
-        <button
+        </span>
+        <span
           onClick={nextStep}
           disabled={currentStep === NUMBER_OF_STEPS - 1}
           className="stepper-button"
         >
           Next
-        </button>
+        </span>
       </div>
     </div>
   );
@@ -48,8 +48,7 @@ const Stepper = () => {
 
 const Step = ({ index, currentStep, isLastStep }) => {
   const getStepClass = () => {
-    if (currentStep === index) return "step-circle current";
-    if (currentStep > index) return "step-circle completed";
+    if (currentStep === index || currentStep > index) return "step-circle active";
     return "step-circle";
   };
 

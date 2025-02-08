@@ -1,81 +1,127 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './pagination.module.css'
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+
 const Pagination = () => {
-    const [data, setData] = useState(null);
-    const [currentStep, setCurrentStep] = useState(1);
-    const [totalSteps, setTotalSteps] = useState(null)
-    const [itemsPerPage, setItemsPerPage] = useState(30);
+    const [products, setProducts] = useState([]);  // Initialize as empty array
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const itemsPerPage = 6;  // Made constant since it doesn't change
 
     useEffect(() => {
-        (async () => {
+        const fetchProducts = async () => {
             try {
-                let response = await fetch("https://jsonplaceholder.typicode.com/photos");
-                let jsonData = await response.json();
-                setData(jsonData)
-                setTotalSteps(Math.ceil(jsonData.length / itemsPerPage))
+                setIsLoading(true);
+                const response = await fetch("https://fakestoreapi.com/products");
+                if (!response.ok) throw new Error('Failed to fetch products');
+                const data = await response.json();
+                setProducts(data);
+                setTotalPages(Math.ceil(data.length / itemsPerPage));
             } catch (error) {
+                setError(error.message);
+                console.error(error);
+            } finally {
+                setIsLoading(false);
             }
-        })()
-    }, [])
+        };
 
+        fetchProducts();
+    }, []);
 
+    const paginatedProducts = useMemo(() => {
+        if (!products.length) return [];
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        return products.slice(start, end);
+    }, [products, currentPage, itemsPerPage]);
 
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    if (isLoading) {
+        return <div className={styles.loading}>Loading...</div>;
+    }
+
+    if (error) {
+        return <div className={styles.error}>Error: {error}</div>;
+    }
 
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                {data ?<Items data={data} currentStep={currentStep} itemsPerPage={itemsPerPage}/>:"Loading..."}
-                <PaginationControls currentPage={currentStep} totalPages={totalSteps} onPageChange={(index)=>setCurrentStep(index)}/>
+                <div className={styles.productsContainer}>
+                    {paginatedProducts.map(product => (
+                        <div key={product.id} className={styles.productContainer}>
+                            <img 
+                                className={styles.productImg} 
+                                src={product.image} 
+                                alt={product.title}
+                            />
+                            <div className={styles.descriptionContainer}>
+                                <span className={styles.productCategory}>
+                                    {product.category}
+                                </span>
+                                <span className={styles.productTitle}>
+                                    {product.title}
+                                </span>
+                                <p className={styles.productDescription}>
+                                    {product.description}
+                                </p>
+                                <div className={styles.productInfoContainer}>
+                                    <div className={styles.rating}>
+                                        ★ {product.rating.rate} ({product.rating.count})
+                                    </div>
+                                    <div className={styles.price}>
+                                        ${product.price}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {products.length > 0 && (
+                    <div className={styles.paginationContainer}>
+                        <div className={styles.paginationBtns}>
+                            <span 
+                                className={styles.paginationBtn}
+                                onClick={() => handlePageChange(currentPage - 1)}
+                                disabled={currentPage === 1}
+                            >
+                                <ArrowLeft />
+                            </span>
+
+                            {Array.from({ length: totalPages }).map((_, index) => (
+                                <span
+                                    key={index}
+                                    className={`${styles.paginationTab} ${
+                                        currentPage === index + 1 ? styles.active : ''
+                                    }`}
+                                    onClick={() => handlePageChange(index + 1)}
+                                >
+                                    {index + 1}
+                                </span>
+                            ))}
+
+                            <span 
+                                className={styles.paginationBtn}
+                                onClick={() => handlePageChange(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                            >
+                                <ArrowRight />
+                            </span>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
-    )
-}
-
-export default Pagination
-
-
-const Items = ({ data, currentStep, itemsPerPage }) => {
-    const startIndex = (currentStep - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentItems = data.slice(startIndex, endIndex);
-
-    return (
-        <div className={styles.list}>
-            {currentItems.map(photo => (
-                <div key={photo.id} className={styles.item}>
-                    {photo.title}
-                </div>
-            ))}
-        </div>
     );
 };
 
-const PaginationControls = ({ currentPage, totalPages, onPageChange }) => {
-    return (
-        <div className={styles.controls}>
-            <button 
-                onClick={() => onPageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-            >
-                Previous
-            </button>
-            
-            {[...Array(totalPages)].map((_, index) => (
-                <button
-                    key={index + 1}
-                    onClick={() => onPageChange(index + 1)}
-                    className={currentPage === index + 1 ? styles.active : ''}
-                >
-                    {index + 1}
-                </button>
-            ))}
-            
-            <button 
-                onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-            >
-                Next
-            </button>
-        </div>
-    );
-};
+export default Pagination;
