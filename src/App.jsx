@@ -13,6 +13,7 @@ import Progressbar from './components/Progressbar/Progressbar'
 import Tabs from './components/Tabs/Tabs'
 import Todo from './components/Todo/Todo'
 import Autocomplete from './components/Autocomplete/Autocomplete'
+import Toast from './components/Toast/Toast'
 
 const App = () => {
   return (
@@ -30,7 +31,8 @@ const App = () => {
       {/* <Progressbar/> */}
       {/* <Tabs/> */}
       {/* <Todo/> */}
-      <Autocomplete/>
+      {/* <Autocomplete/> */}
+      <Toast/>
     </div>
   )
 }

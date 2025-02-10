@@ -1,0 +1,72 @@
+.container {
+    min-width: 100vw;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    width: 400px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.toastButton {
+    display: block;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 500;
+    width: fit-content;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.toastContainer {
+    border-radius: 6px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: white;
+    position: absolute;
+    width: 200px;
+    top: 0;
+    right: -300px;
+    transition: right 0.1s ease-in-out;
+    overflow: hidden;
+}
+
+
+.toastContainer.active {
+    right: 50px;
+}
+
+.toast {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toastHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toastHeader .toastTitle {
+    color: #666;
+    font-size: 1.4rem;
+}
+
+.progressBarContainer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.progressBar{
+    background-color: #3b82f6;
+    height: 3px;
+}
