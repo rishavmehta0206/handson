@@ -1,4 +1,5 @@
-import React from 'react'
+import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
 import Slider from './components/Slider/Slider'
 // import InfiniteScroll from './components/InfiniteScoll/InfiniteScroll'
 import TypeHead from './components/TypeHead/TypeHead'
@@ -14,8 +15,13 @@ import Tabs from './components/Tabs/Tabs'
 import Todo from './components/Todo/Todo'
 import Autocomplete from './components/Autocomplete/Autocomplete'
 import Toast from './components/Toast/Toast'
+import HolyGrail from './components/HolyGrail/HolyGrail'
+import FormValidation from './components/FormValidation/FormValidation'
+import Main from './components/Redux-Toolkit/Main'
+import { fetchAllUsers } from './components/Redux-Toolkit/feature/usersSlice'
 
 const App = () => {
+
   return (
     <div>
       {/* <Slider/> */}
@@ -32,7 +38,10 @@ const App = () => {
       {/* <Tabs/> */}
       {/* <Todo/> */}
       {/* <Autocomplete/> */}
-      <Toast/>
+      {/* <Toast/> */}
+      {/* <HolyGrail/> */}
+      {/* <FormValidation/> */}
+      <Main />
     </div>
   )
 }

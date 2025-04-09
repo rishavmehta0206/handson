@@ -3,7 +3,7 @@ import styles from './toast.module.css'
 
 const Toast = () => {
     const [toastToggle, setToastToggle] = useState(false);
-
+    const [toastArray,setToastArray] = useState([]);
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>

@@ -63,7 +63,7 @@ const Slider = () => {
             key={person.id}
             className={styles.img}
             style={{
-              translate: `${index * -100}%`,
+              "translate": `${index * -100}%`,
             }}
             src={person.image}
             alt={person.name}

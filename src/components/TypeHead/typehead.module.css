@@ -11,9 +11,9 @@
 
 input{
     padding: 10px;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
-    border-color: lightgray;
+    border: 2px solid #ccc;
 }
 
 .suggestions{

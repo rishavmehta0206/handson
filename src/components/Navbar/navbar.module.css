@@ -1,110 +1,81 @@
-.container {
+.navContainer {
+    width: 100%;
     height: 70px;
-    width: 100vw;
-    overflow: hidden;
     position: relative;
 }
 
-.wrapper {
+.navWrapper {
+    padding: 10px 30px;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 10px 15px;
     align-items: center;
-    height: 100%;
-    background-color: white;
-    position: relative;
-    z-index: 100;
 }
 
-.logo {
+.navLogo {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
 }
 
-.logo span {
-    color: rgb(164, 160, 160);
+.logoImage {
+    font-weight: bold;
+    font-size: 30px;
 }
 
-.navlinks {
+.navLinks {
+    display: flex;
+    gap: 20px;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.navLink {
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    gap: 15px;
+    padding: 0 20px;
+    transition: all ease-in-out 0.2s;
 }
 
-.navlink {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    border-radius: 10px;
-    transition: all 0.2s ease-in-out;
-}
-
-.navlink:hover {
+.navLink:hover {
+    background-color: #ddd;
+    border-radius: 6px;
     cursor: pointer;
-    background-color: lightgray;
 }
 
-.burgerSubmenu {
+.navLinksMobileContainer {
     display: none;
-    position: relative;
 }
 
-.burgerButton {
+.navLinksMobile {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    height: calc(100vh - 70px);
+    background-color: red;
+    width: 100vw;
+    transition: right ease-in-out 0.3s;
+}
+
+.navLinksMobile.active{
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 25px;
-    z-index: 101;
+    right: 0%;
 }
 
-.burgerButton:hover {
+.menuButt:hover{
     cursor: pointer;
 }
 
-.burgerLines {
-    width: 100%;
-    background-color: black;
-    height: 2px;
-    transition: all 0.3s ease;
-}
-
-
-
-.mobileMenu {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100vh;
-    background-color: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease-in-out;
-
-}
-.navlinksmobile{
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.mobileMenu.active {
-    right: 0;
-}
-
-
-
-@media only screen and (max-width: 600px) {
-    .burgerSubmenu {
-        display: block;
-    }
-    
-    .navlinks {
+@media screen and (max-width:780px) {
+    .navLinks {
         display: none;
+    }
+
+    .navLinksMobileContainer {
+        display: block;
     }
 }
